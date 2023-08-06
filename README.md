@@ -17,6 +17,7 @@ Open browser on `localhost:3000`
 
 ## TODOs
 - [x] Add homepage
+- [x] Create layout for question
 - [ ] Add page for querying
 - [ ] Add page for topics (By Chapter)
 - [ ] Add page for random questions
