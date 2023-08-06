@@ -1,95 +1,54 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { Box, Button, Card, Container, Divider, Icon, Paper, Typography } from "@mui/material";
+import SchoolIcon from "@mui/icons-material/School"
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <Box>
+      <Container className="info"
+        sx={{
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+          marginBottom: 10,
+        }}
+        maxWidth="lg">
+        <SchoolIcon color="primary" sx={{ fontSize: 150 }} />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+        <Typography variant="h6">Need practice for Ontario Grade 12 Math?</Typography>
+        <Typography variant="h6">We have it 4U</Typography>
+        <Button variant="contained">Find Topics</Button>
+      </Container>
+      <Container className="body"
+        sx={{
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Typography variant="h6">Find Practice Problems</Typography>
+        <Paper variant="outlined" elevation={3}
+          sx={{
+            width: 600,
+            height: 200
+          }}
         />
-      </div>
+        <Typography variant="h6">Questions Provided With Answers</Typography>
+        <Paper variant="outlined" elevation={3}
+          sx={{
+            width: 600,
+            height: 200
+          }}
+        />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        <Typography variant="h6">Demonstrate Your Understanding With Practice Tests</Typography>
+        <Paper variant="outlined" elevation={3}
+          sx={{
+            width: 600,
+            height: 200
+          }}
+        />
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      </Container>
+    </Box>
   )
 }
