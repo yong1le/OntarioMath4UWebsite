@@ -1,12 +1,12 @@
 "use client"
 
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
-import { Button, Card, CardActions, CardContent, CardMedia, Paper, IconButton, TextField, Typography, Collapse } from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia, IconButton, TextField, Typography, Collapse } from "@mui/material";
 import Graph from "./Graph";
 import { useState } from "react";
 
 export default function QuestionCard({
-  id, unit, chapter, question, answer, graph
+  id, question, answer, graph
 }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -15,14 +15,14 @@ export default function QuestionCard({
   }
 
   return (
-    <Card variant="outlined" sx={{ width: "inherit" }}>
+    <Card variant="outlined">
       {graph !== "" ?
-      <CardMedia
-        component={Graph}
-        equation={graph}
-      />
-      :
-      <div/>
+        <CardMedia
+          component={Graph}
+          equation={graph}
+        />
+        :
+        null
       }
       <CardContent sx={{
       }}>
@@ -30,19 +30,11 @@ export default function QuestionCard({
         <TextField variant="outlined" label="Answer" />
       </CardContent>
       <CardActions sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between"
       }}>
         <IconButton aria-label="show-more" onClick={showAnswer}>
-          {expanded ? <ExpandLess/> : <ExpandMore/>}
-          {/* <ExpandLess/> */}
+          {expanded ? <ExpandLess /> : <ExpandMore />}
         </IconButton>
 
-        <Paper variant="elevation" elevation={0}>
-          <Button variant="contained">Unit {unit}</Button>
-          <Button variant="contained">Chapter {chapter.split(".")[1]}</Button>
-        </Paper>
       </CardActions>
       <Collapse in={expanded} unmountOnExit timeout="auto">
         <CardContent>

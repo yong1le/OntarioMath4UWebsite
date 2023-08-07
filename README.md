@@ -20,7 +20,7 @@ Open browser on `localhost:3000`
 - [x] Create layout for question
 - [ ] Add page for querying
 - [ ] Add page for topics (By Chapter)
-- [ ] Add page for random questions
+- [x] Add page for random questions
 - [ ] Add page for practice test
 
 ...

@@ -2,6 +2,7 @@
 
 import functionPlot from "function-plot"
 import { useEffect, useRef } from "react"
+import { Container } from "@mui/material";
 
 export default function Graph({ equation }) {
 
@@ -10,7 +11,7 @@ export default function Graph({ equation }) {
   useEffect(() => {
     functionPlot({
       target: rootEl.current,
-      width: 900,
+      width: rootEl.current.offsetWidth,
       data: [{
         fn: equation
       }],
@@ -18,6 +19,6 @@ export default function Graph({ equation }) {
     })
   })
   return (
-    <div ref={rootEl}></div>
+    <div ref={rootEl} sx={{width:"inherit"}}/>
   )
 }
