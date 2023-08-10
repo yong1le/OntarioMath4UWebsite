@@ -18,9 +18,10 @@ Open browser on `localhost:3000`
 ## TODOs
 - [x] Add homepage
 - [x] Create layout for question
-- [ ] Add page for querying
+- [x] Add page for querying (Update Aug.10: Changed to a dropdown)
 - [ ] Add page for topics (By Chapter)
-- [x] Add page for random questions
+- [x] Add page for random questions (When u click on "Study")
 - [ ] Add page for practice test
+- [ ] Get graph working
 
 ...
