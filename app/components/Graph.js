@@ -2,13 +2,13 @@
 
 import functionPlot from "function-plot"
 import { useEffect, useRef } from "react"
-import { Container } from "@mui/material";
 
 export default function Graph({ equation }) {
 
   const rootEl = useRef(null);
 
   useEffect(() => {
+    const eq = 
     functionPlot({
       target: rootEl.current,
       width: rootEl.current.offsetWidth,

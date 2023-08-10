@@ -1,6 +1,5 @@
-import { Box, Button, Card, Container, Divider, Icon, Paper, Typography } from "@mui/material";
-import SchoolIcon from "@mui/icons-material/School"
-import QuestionCard from "./components/QuestionCard";
+import SchoolIcon from "@mui/icons-material/School";
+import { Box, Button, Container, Paper, Typography, Link } from "@mui/material";
 
 export default function Home() {
   return (
@@ -17,7 +16,9 @@ export default function Home() {
 
         <Typography variant="h6">Need practice for Ontario Grade 12 Math?</Typography>
         <Typography variant="h6">We have it 4U</Typography>
-        <Button variant="contained">Find Topics</Button>
+        <Link href="/topics">
+          <Button variant="contained">Find Topics</Button>
+        </Link>
       </Container>
       <Container className="body"
         sx={{
@@ -47,17 +48,8 @@ export default function Home() {
             width: 600,
             height: 200
           }}
-        />
 
-        <QuestionCard
-          id="1"
-          unit="1"
-          chapter="1.1"
-          question="What is my name"
-          answer="Yong Le"
-          graph="sqrt(x)"
         />
-
       </Container>
     </Box>
   )

@@ -15,15 +15,16 @@ export default function QuestionCard({
   }
 
   return (
-    <Card variant="outlined">
-      {graph !== "" ?
-        <CardMedia
-          component={Graph}
-          equation={graph}
-        />
-        :
-        null
-      }
+    <Card variant="outlined" sx={{ width: "inherit" }}>
+      {/* {graph !== "" ? */}
+      {/*   <CardMedia */}
+      {/*     component={Graph} */}
+      {/*     equation={graph} */}
+      {/*     sx={{ width: "inherit", background: "red" }} */}
+      {/*   /> */}
+      {/*   : */}
+      {/*   null */}
+      {/* } */}
       <CardContent sx={{
       }}>
         <Typography gutterBottom variant="body1">{id}. {question}</Typography>
