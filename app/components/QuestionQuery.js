@@ -8,11 +8,19 @@ import { useRouter } from "next/navigation";
 
 export default function QuestionQuery() {
 
+  // Routing
+  const router = useRouter();
+  const setSearch = () => {
+    sessionStorage.setItem("unit", unit);
+    sessionStorage.setItem("chapter", chapter);
+    navigateFromMemory(router);
+  }
+
   const chapterRef = useRef(0);
 
   const [unit, setUnit] = useState("");
   const [chapter, setChapter] = useState("");
-  const [chaps, setChaps] = useState([]);
+  const [chaps, setChaps] = useState([]); // Array of ints representing the chapters
 
   const changeUnit = (e) => {
     const unit = e.target.value;
@@ -34,14 +42,6 @@ export default function QuestionQuery() {
       setChapter(e)
     else
       setChapter(e.target.value);
-  }
-
-  const router = useRouter();
-
-  const setSearch = () => {
-    sessionStorage.setItem("unit", unit);
-    sessionStorage.setItem("chapter", chapter);
-    navigateFromMemory(router);
   }
 
   return (

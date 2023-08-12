@@ -1,8 +1,7 @@
 "use client"
 
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
-import { Card, CardActions, CardContent, CardMedia, IconButton, TextField, Typography, Collapse } from "@mui/material";
-import Graph from "./Graph";
+import { Card, CardActions, CardContent, IconButton, TextField, Typography, Collapse } from "@mui/material";
 import { useState } from "react";
 
 export default function QuestionCard({

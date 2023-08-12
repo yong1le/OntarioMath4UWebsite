@@ -1,10 +1,10 @@
 'use client'
 import QuestionCard from "@/app/components/QuestionCard";
 import QuestionQuery from "@/app/components/QuestionQuery";
-import { checkId } from "@/app/utils/Model";
+import { checkId, getSpecificQuestion } from "@/app/utils/Model";
 import { navigateFromMemory } from "@/app/utils/Navigation";
 import { ExpandLess, ExpandMore, Navigation } from "@mui/icons-material";
-import { Button, Collapse, Container, IconButton } from "@mui/material";
+import { Breadcrumbs, Button, Collapse, Container, IconButton, Typography } from "@mui/material";
 import ErrorPage from 'next/error';
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -13,29 +13,23 @@ import { data } from "../../utils/db";
 
 export default function page({ params }) {
 
+  // router stuff
   const router = useRouter();
-
   const nextQuestion = () => {
     navigateFromMemory(router);
   }
 
-
-  // If the user enters an invalid url
-  if (!checkId(params.id)) {
+  const question = getSpecificQuestion(params.id);
+  if (question == null) {
     return (
       <ErrorPage statusCode={404} />
     )
   }
 
-  const question = data[params.id].question;
-  const answer = data[params.id].answer;
-  let graph = data[params.id].graph;
-  if (graph == null) graph = "";
-
+  // Opening/Closing the "search"
   const expandQuery = () => {
     setQueryExpanded(!queryExpanded)
   }
-
   const [queryExpanded, setQueryExpanded] = useState(false);
 
   return (
@@ -64,11 +58,16 @@ export default function page({ params }) {
         sx={{
           paddingTop: 10
         }}>
+        <Breadcrumbs>
+          <Typography>Unit {question.unit}</Typography>
+          <Typography>Chapter {question.chapter}</Typography>
+          <Typography>{question.topic}</Typography>
+        </Breadcrumbs>
         <QuestionCard
           id={params.id}
-          question={question}
-          answer={answer}
-          graph={graph}
+          question={question.question}
+          answer={question.answer}
+          graph={question.graph}
         />
 
         {/* Nav */}

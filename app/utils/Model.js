@@ -2,24 +2,54 @@ import { data } from "./db";
 
 const len = data.length;
 
-export const getRandomQuestion = () => {
+/**
+ * Returns whether an id is existant in the database.
+ * @param {int} [id] The id in question
+ * @return {boolean} True if id is in database, false otherwise.
+ */
+export const checkId = (id) => {
+  return id >= 0 && id < len;
+}
+
+/**
+ * @param {int} [id] an id 
+ * @return {Object} The object corresponding to the id in the database, null otherwise
+ */
+export const getSpecificQuestion = (id) => {
+  if (!checkId) return null;
+  return data[id];
+}
+
+/**
+ * @return Returns a random question id from the databse
+ */
+export const getRandomQuestionId = () => {
   return Math.floor(Math.random() * (len - 1))
 }
 
-export const getQuestionFromFull = (unit, chapter) => {
+/**
+ * @param {int} [unit] The unit
+ * @param {int} [chapter] The chapter
+ * @return {int} A random id with the corresponding unit and chapter
+ */
+export const getQuestionIdFromFull = (unit, chapter) => {
   const matching = [];
   data.forEach((e) => {
-    if (e.unit.toString() === unit && e.chapter.toString() === chapter) {
+    if (e.unit.toString() === unit && e.chapter === chapter) {
       matching.push(e);
     }
   })
   return Math.floor(Math.random() * (matching.length - 1));
 }
 
-export const getQuestionFromUnit = (unit) => {
+/**
+ * @param {int} [unit] The unit
+ * @return {int} A random id with the corresponding unit
+ */
+export const getQuestionIdFromUnit = (unit) => {
   const matching = [];
   data.forEach((e) => {
-    if (e.unit.toString() === unit) {
+    if (e.unit === unit) {
       matching.push(e);
     }
   })
@@ -27,6 +57,10 @@ export const getQuestionFromUnit = (unit) => {
 
 }
 
+/**
+ * @param {int} [unit] The unit
+ * @return {Set<int>} The chapters
+ */
 export const getChapters = (unit) => {
   const chapters = new Set();
   for (let i = 0; i < len; i++) {
@@ -37,11 +71,3 @@ export const getChapters = (unit) => {
   return chapters;
 }
 
-export const checkId = (id) => {
-  if (id < 0 || id >= len) return false;
-  if (data[id].unit === null) return false;
-  if (data[id].chapter === null) return false;
-  if (data[id].answer === null) return false;
-  if (data[id].question === null) return false;
-  return true;
-}

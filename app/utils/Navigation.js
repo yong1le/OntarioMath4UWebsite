@@ -1,19 +1,19 @@
-import { getQuestionFromFull, getQuestionFromUnit, getRandomQuestion } from "./Model";
+import { getQuestionIdFromFull, getQuestionIdFromUnit, getRandomQuestionId } from "./Model";
 
 export  function navigateFromMemory(router) {
-  const unit = sessionStorage.getItem("unit");
-  const chapter = sessionStorage.getItem("chapter");
+  const unit = parseInt(sessionStorage.getItem("unit"));
+  const chapter = parseInt(sessionStorage.getItem("chapter"));
 
   let id;
 
-  if (unit === null || unit === "") {
-    id = getRandomQuestion();
+  if (isNaN(unit)) {
+    id = getRandomQuestionId();
   }
-  else if (chapter === null || chapter === "") {
-    id = getQuestionFromUnit(unit);
+  else if (isNan(chapter)) {
+    id = getQuestionIdFromUnit(unit);
   }
   else {
-    id = getQuestionFromFull(unit, chapter);
+    id = getQuestionIdFromFull(unit, chapter);
   }
 
   router.push(`/questions/${id}`);
