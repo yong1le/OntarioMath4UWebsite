@@ -1,13 +1,14 @@
 'use client'
 import QuestionCard from "@/app/components/QuestionCard";
-import { Container, Button, Collapse, IconButton } from "@mui/material";
-import { data } from "../../utils/db";
-import { useState } from "react";
 import QuestionQuery from "@/app/components/QuestionQuery";
-import { ExpandLess, ExpandMore, Navigation } from "@mui/icons-material";
-import { navigateFromMemory } from "@/app/utils/Navigation";
-import { useRouter } from "next/navigation";
 import { checkId } from "@/app/utils/Model";
+import { navigateFromMemory } from "@/app/utils/Navigation";
+import { ExpandLess, ExpandMore, Navigation } from "@mui/icons-material";
+import { Button, Collapse, Container, IconButton } from "@mui/material";
+import ErrorPage from 'next/error';
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { data } from "../../utils/db";
 
 
 export default function page({ params }) {
@@ -18,17 +19,17 @@ export default function page({ params }) {
     navigateFromMemory(router);
   }
 
-  // Question information
-  let question = "";
-  let answer = "";
-  let graph = "";
 
-  if (checkId(params.id)) {
-    question = data[params.id].question;
-    answer = data[params.id].answer;
-    graph = data[params.id].graph;
+  // If the user enters an invalid url
+  if (!checkId(params.id)) {
+    return (
+      <ErrorPage statusCode={404} />
+    )
   }
 
+  const question = data[params.id].question;
+  const answer = data[params.id].answer;
+  let graph = data[params.id].graph;
   if (graph == null) graph = "";
 
   const expandQuery = () => {
