@@ -1,61 +1,97 @@
-"use client"
+"use client";
 
-import { Paper, FormControl, MenuItem, Select, InputLabel, Button } from "@mui/material";
-import { useRef, useState } from "react";
-import { getChapters } from "../utils/Model";
+import {
+  Paper,
+  FormControl,
+  MenuItem,
+  Select,
+  InputLabel,
+  Button,
+} from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import { getChapters, getTopics, getUnits } from "../utils/Model";
 import { navigateFromMemory } from "../utils/Navigation";
 import { useRouter } from "next/navigation";
 
 export default function QuestionQuery() {
-
   // Routing
   const router = useRouter();
   const setSearch = () => {
     sessionStorage.setItem("unit", unit);
     sessionStorage.setItem("chapter", chapter);
+    sessionStorage.setItem("topic", topic);
     navigateFromMemory(router);
-  }
+  };
 
   const chapterRef = useRef(0);
+  const topicRef = useRef(0);
 
   const [unit, setUnit] = useState("");
   const [chapter, setChapter] = useState("");
-  const [chaps, setChaps] = useState([]); // Array of ints representing the chapters
+  const [topic, setTopic] = useState("");
+
+  const [units, setUnits] = useState([]);
+  const [chapters, setChapters] = useState([]); // Array of ints representing the chapters
+  const [topics, setTopics] = useState([]);
 
   const changeUnit = (e) => {
     const unit = e.target.value;
     setUnit(unit);
     changeChapter("");
+    changeTopic("");
+    topicRef.current.style.opacity = 0;
     if (unit === "") {
       chapterRef.current.style.opacity = 0;
-    }
-    else {
+    } else {
       chapterRef.current.style.width = 200;
       chapterRef.current.style.opacity = 1;
 
-      setChaps(Array.from(getChapters(e.target.value)));
+      setChapters(getChapters(unit));
     }
-  }
+  };
 
   const changeChapter = (e) => {
-    if (e === "")
-      setChapter(e)
-    else
-      setChapter(e.target.value);
-  }
+    // sent by changing units
+    if (e === "") {
+      setChapter(e);
+    }
+    // sent by changing chapters
+    else {
+      const chapter = e.target.value;
+      setChapter(chapter);
+      changeTopic("");
+
+      if (chapter === "") {
+        topicRef.current.style.opacity = 0;
+      } else {
+        topicRef.current.style.width = 200;
+        topicRef.current.style.opacity = 1;
+
+        setTopics(getTopics(unit, chapter));
+      }
+    }
+  };
+
+  const changeTopic = (e) => {
+    if (e === "") setTopic(e);
+    else setTopic(e.target.value);
+  };
 
   return (
-    <Paper elevation={3}
+    <Paper
+      elevation={3}
       sx={{
         paddingX: 1,
         paddingY: 3,
         display: "flex",
-        justifyContent: "space-evenly"
-      }}>
+        justifyContent: "space-evenly",
+      }}
+    >
       <FormControl
         sx={{
           minWidth: 200,
-        }}>
+        }}
+      >
         <InputLabel id="unit-label">Unit</InputLabel>
         <Select
           labelId="unit-label"
@@ -64,22 +100,21 @@ export default function QuestionQuery() {
           onChange={changeUnit}
         >
           <MenuItem value="">All</MenuItem>
-          <MenuItem value={0}>Unit 0</MenuItem>
-          <MenuItem value={1}>Unit 1</MenuItem>
-          <MenuItem value={2}>Unit 2</MenuItem>
-          <MenuItem value={3}>Unit 3</MenuItem>
-          <MenuItem value={4}>Unit 4</MenuItem>
-          <MenuItem value={5}>Unit 5</MenuItem>
-          <MenuItem value={6}>Unit 6</MenuItem>
+          {getUnits().map((e) => (
+            <MenuItem value={e} key={e}>
+              Unit {e}
+            </MenuItem>
+          ))}
         </Select>
-
       </FormControl>
+
       <FormControl
         ref={chapterRef}
         sx={{
           minWidth: 200,
-          opacity: 0
-        }}>
+          opacity: 0,
+        }}
+      >
         <InputLabel id="chapter-label">Chapter</InputLabel>
         <Select
           labelId="chapter-label"
@@ -88,10 +123,39 @@ export default function QuestionQuery() {
           onChange={changeChapter}
         >
           <MenuItem value="">All</MenuItem>
-          {chaps.map((e) => (<MenuItem value={e} key={e}>Chapter {e}</MenuItem>))}
+          {chapters.map((e) => (
+            <MenuItem value={e} key={e}>
+              Chapter {e}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-      <Button onClick={setSearch} variant="contained">Search</Button>
+
+      <FormControl
+        ref={topicRef}
+        sx={{
+          minWidth: 200,
+          opacity: 0,
+        }}
+      >
+        <InputLabel id="topic-label">Topic</InputLabel>
+        <Select
+          labelId="topic-label"
+          label="topic"
+          value={topic}
+          onChange={changeTopic}
+        >
+          <MenuItem value="">All</MenuItem>
+          {topics.map((e, i) => (
+            <MenuItem value={e} key={i}>
+              {e}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Button onClick={setSearch} variant="contained">
+        Search
+      </Button>
     </Paper>
-  )
+  );
 }
