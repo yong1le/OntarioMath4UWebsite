@@ -8,11 +8,33 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prettier": {},
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off"
+    }
+  },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.3",
+    "eslint-plugin-react": "^7.33.1",
     "function-plot": "^1.23.3",
     "next": "13.4.12",
     "react": "18.2.0",
