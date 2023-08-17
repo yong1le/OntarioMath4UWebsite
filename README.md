@@ -19,9 +19,11 @@ Open browser on `localhost:3000`
 - [x] Add homepage
 - [x] Create layout for question
 - [x] Add page for querying (Update Aug.10: Changed to a dropdown)
-- [ ] Add page for topics (By Chapter)
+- [ ] Add page for topics
 - [x] Add page for random questions (When u click on "Study")
 - [ ] Add page for practice test
 - [ ] Get graph working
+- [ ] Find something to store finished questions from current session
+- [ ] Theme
 
 ...
