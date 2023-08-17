@@ -30,7 +30,7 @@ export default function QuestionQuery() {
   const [chapter, setChapter] = useState("");
   const [topic, setTopic] = useState("");
 
-  const [units, setUnits] = useState([]);
+  const units = getUnits();
   const [chapters, setChapters] = useState([]); // Array of ints representing the chapters
   const [topics, setTopics] = useState([]);
 
@@ -100,7 +100,7 @@ export default function QuestionQuery() {
           onChange={changeUnit}
         >
           <MenuItem value="">All</MenuItem>
-          {getUnits().map((e) => (
+          {units.map((e) => (
             <MenuItem value={e} key={e}>
               Unit {e}
             </MenuItem>
