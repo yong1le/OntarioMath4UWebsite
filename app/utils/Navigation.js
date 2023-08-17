@@ -1,4 +1,9 @@
-import { getQuestionIdFromFull, getQuestionIdFromUnit, getRandomQuestionId, getQuestionIdFromUnitChapter } from "./Model";
+import {
+  getQuestionIdFromFull,
+  getQuestionIdFromUnit,
+  getRandomQuestionId,
+  getQuestionIdFromUnitChapter,
+} from "./Model";
 
 export function navigateFromMemory(router) {
   const unit = parseInt(sessionStorage.getItem("unit"));
@@ -8,19 +13,12 @@ export function navigateFromMemory(router) {
   let id;
 
   if (isNaN(unit)) {
-    console.log(1)
     id = getRandomQuestionId();
-  }
-  else if (isNaN(chapter)) {
-    console.log(2)
+  } else if (isNaN(chapter)) {
     id = getQuestionIdFromUnit(unit);
-  }
-  else if (topic === "" || topic === null) {
-    console.log(3)
-    id = getQuestionIdFromUnitChapter(unit, chapter)
-  }
-  else {
-    console.log(4)
+  } else if (topic === "" || topic === null) {
+    id = getQuestionIdFromUnitChapter(unit, chapter);
+  } else {
     id = getQuestionIdFromFull(unit, chapter, topic);
   }
 
