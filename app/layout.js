@@ -1,5 +1,5 @@
 import { Roboto } from 'next/font/google'
-import Appbar from './components/Appbar'
+import Appbar from '../components/Appbar'
 import { ThemeProvider, createTheme } from '@mui/material'
 
 const roboto = Roboto({ subsets: ['latin'], weight: "300" })

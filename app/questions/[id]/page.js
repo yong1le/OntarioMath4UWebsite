@@ -1,8 +1,8 @@
 "use client";
-import QuestionCard from "@/app/components/QuestionCard";
-import QuestionQuery from "@/app/components/QuestionQuery";
-import { getSpecificQuestion } from "@/app/utils/Model";
-import { navigateFromMemory } from "@/app/utils/Navigation";
+import QuestionCard from "@/components/QuestionCard";
+import QuestionQuery from "@/components/QuestionQuery";
+import { getSpecificQuestion } from "@/utils/Model";
+import { navigateFromMemory } from "@/utils/Navigation";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
   Breadcrumbs,

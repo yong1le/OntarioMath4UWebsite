@@ -1,17 +1,17 @@
 "use client";
 
 import {
-  Paper,
-  FormControl,
-  MenuItem,
-  Select,
-  InputLabel,
   Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
 } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
 import { getChapters, getTopics, getUnits } from "../utils/Model";
 import { navigateFromMemory } from "../utils/Navigation";
-import { useRouter } from "next/navigation";
 
 export default function QuestionQuery() {
   // Routing

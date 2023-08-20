@@ -22,5 +22,6 @@ export function navigateFromMemory(router) {
     id = getQuestionIdFromFull(unit, chapter, topic);
   }
 
+  console.log(id);
   router.push(`/questions/${id}`);
 }
